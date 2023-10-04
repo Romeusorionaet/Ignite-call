@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useRouter } from 'next/router'
 
-const clainUsernameFormSchema = z.object({
+const claimUsernameFormSchema = z.object({
   username: z
     .string()
     .min(3, { message: 'O usuário deve ter no mínimo 3 letras.' })
@@ -16,20 +16,20 @@ const clainUsernameFormSchema = z.object({
     .transform((username) => username.toLowerCase()),
 })
 
-type clainUsernameData = z.infer<typeof clainUsernameFormSchema>
+type ClaimUsernameFormData = z.infer<typeof claimUsernameFormSchema>
 
 export function ClaimUsernameForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<clainUsernameData>({
-    resolver: zodResolver(clainUsernameFormSchema),
+  } = useForm<ClaimUsernameFormData>({
+    resolver: zodResolver(claimUsernameFormSchema),
   })
 
   const router = useRouter()
 
-  async function handleClainUsername(data: clainUsernameData) {
+  async function handleClaimUsername(data: ClaimUsernameFormData) {
     const { username } = data
 
     await router.push(`/register?username=${username}`)
@@ -37,7 +37,7 @@ export function ClaimUsernameForm() {
 
   return (
     <>
-      <Form as="form" onSubmit={handleSubmit(handleClainUsername)}>
+      <Form as="form" onSubmit={handleSubmit(handleClaimUsername)}>
         <TextInput
           size="sm"
           crossOrigin="true"
