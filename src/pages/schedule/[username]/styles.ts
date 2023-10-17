@@ -8,7 +8,7 @@ export const Container = styled('div', {
 
 export const UserHeader = styled('div', {
   display: 'flex',
-  flexDirection: 'cloumn',
+  flexDirection: 'column',
   alignItems: 'center',
 
   [`> ${Heading}`]: {
