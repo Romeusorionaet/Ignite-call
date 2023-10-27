@@ -33,7 +33,7 @@ export function Calendar() {
         <thead>
           <tr>
             {shortWeekDays.map((weekDay) => (
-              <th key={weekDay}>DOM.</th>
+              <th key={weekDay}>{weekDay}</th>
             ))}
           </tr>
         </thead>
