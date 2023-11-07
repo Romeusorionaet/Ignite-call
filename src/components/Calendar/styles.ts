@@ -10,11 +10,12 @@ export const CalendarContainer = styled('div', {
 export const CalendarHeader = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  justifyItems: 'space-between',
+  justifyContent: 'space-between',
 })
 
 export const CalendarTitle = styled(Text, {
   fontWeight: '$medium',
+  textTransform: 'capitalize',
 
   span: {
     color: '$gray200',
@@ -87,7 +88,7 @@ export const CalendarDay = styled('button', {
   },
 
   '&:not(:disabled):hover': {
-    backgorund: '$gray500',
+    background: '$gray500',
   },
 
   '&:focus': {
