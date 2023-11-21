@@ -67,7 +67,7 @@ export default function UpdateProfile() {
         </label>
 
         <label>
-          <Text size="sm">Nome completo</Text>
+          <Text size="sm">Sobre você</Text>
           <TextArea {...register('bio')} />
           <FormAnnotation size="sm">
             Fale um pouco sobre você. Isto será exibido em sua página pessoal.
