@@ -39,14 +39,18 @@ export function ConfirmStep() {
 
       <label>
         <Text size="sm">Nome completo</Text>
-        <TextInput crossOrigin placeholder="Seu nome" {...register('name')} />
+        <TextInput
+          crossOrigin="true"
+          placeholder="Seu nome"
+          {...register('name')}
+        />
         {errors.name && <FormError size="sm">{errors.name.message}</FormError>}
       </label>
 
       <label>
         <Text size="sm">Endereço de e-mail</Text>
         <TextInput
-          crossOrigin
+          crossOrigin="true"
           type="email"
           placeholder="romeusoares@gmail.com"
           {...register('email')}

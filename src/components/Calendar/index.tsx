@@ -26,6 +26,7 @@ type CalendarWeeks = CalendarWeek[]
 
 interface BlockedDates {
   blockedWeekDays: number[]
+  blockedDates: number[]
 }
 
 interface CalendarProps {
@@ -69,7 +70,7 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
       const response = await api.get(`/users/${username}/blocked-dates`, {
         params: {
           year: currentDate.get('year'),
-          month: currentDate.get('month'),
+          month: currentDate.get('month') + 1,
         },
       })
       return response.data
@@ -111,18 +112,25 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
 
     const calendarDays = [
       ...previousMonthFillArray.map((date) => {
-        return { date, disabled: true }
+        return {
+          date,
+          disabled: true,
+        }
       }),
       ...daysInMonthArray.map((date) => {
         return {
           date,
           disabled:
             date.endOf('day').isBefore(new Date()) ||
-            blockedDates.blockedWeekDays.includes(date.get('day')),
+            blockedDates.blockedWeekDays.includes(date.get('day')) ||
+            blockedDates.blockedDates.includes(date.get('date')),
         }
       }),
       ...nextMonthFillArray.map((date) => {
-        return { date, disabled: true }
+        return {
+          date,
+          disabled: true,
+        }
       }),
     ]
 
@@ -132,7 +140,7 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
 
         if (isNewWeek) {
           weeks.push({
-            week: i / 7 + i,
+            week: i / 7 + 1,
             days: original.slice(i, i + 7),
           })
         }
@@ -149,7 +157,8 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
     <CalendarContainer>
       <CalendarHeader>
         <CalendarTitle>
-          {currentMonth} <span>{currentYear}</span>
+          {currentMonth}
+          <span> {currentYear}</span>
         </CalendarTitle>
 
         <CalendarActions>
@@ -170,6 +179,7 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
             ))}
           </tr>
         </thead>
+
         <tbody>
           {calendarWeeks.map(({ week, days }) => {
             return (
