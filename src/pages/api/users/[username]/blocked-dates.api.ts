@@ -42,7 +42,7 @@ export default async function handler(
     )
   })
 
-  const blockedDatesRaw: Array<{ date: string }> = await prisma.$queryRaw`
+  const blockedDatesRaw: Array<{ date: number }> = await prisma.$queryRaw`
     SELECT 
       EXTRACT(DAY FROM S.DATE) AS date,
       COUNT(S.date) AS amount,
