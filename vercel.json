@@ -1,14 +1,10 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "src/pages/index.page.tsx", 
-        "use": "@vercel/node",
-        "config": {
-          "includeFiles": ["prisma/schema.prisma"], 
-          "postinstall": "npx prisma generate" 
-        }
-      }
-    ]
-  }
-  
+  "functions": {
+    "yourFunctionName": {
+      "maxDuration": 60
+    }
+  },
+  "rewrites": [
+    {"source": "/(.*)", "destination": "/"}
+  ]
+}
